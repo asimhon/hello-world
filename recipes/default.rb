@@ -2,4 +2,7 @@
 # Cookbook:: hello-world
 # Recipe:: default
 #
-# Copyright:: 2018, The Authors, All Rights Reserved.
+# Ariel Simhon
+
+include_recipe 'hello-world::configure_app'
+

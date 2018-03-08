@@ -1,26 +1,33 @@
----
 driver:
-  name: vagrant
+  name: ec2
+  aws_ssh_key_id: KEY-NAME
+  security_group_ids: ["sg-xxx"]
+  region: eu-west-1
+  availability_zone: eu-west-1a
+  require_chef_omnibus: true
+  subnet_id: subnet-xxx
+  instance_type: m3.medium
+
+transport:
+  ssh_key: PATH
+  username: ubuntu
 
 provisioner:
-  name: chef_zero
-  # You may wish to disable always updating cookbooks in CI or other testing environments.
-  # For example:
-  #   always_update_cookbooks: <%= !ENV['CI'] %>
-  always_update_cookbooks: true
-
-verifier:
-  name: inspec
+  name: chef_solo
 
 platforms:
-  - name: ubuntu-16.04
-  - name: centos-7.3
+  - name: amazon
+    driver:
+      image_id: ami-1b791862
+      tags:
+        Name: Hello-World-ChefKitchen
+        created-by: test-kitchen
+      iam_profile_name: hello-world
 
 suites:
   - name: default
     run_list:
       - recipe[hello-world::default]
-    verifier:
-      inspec_tests:
-        - test/smoke/default
     attributes:
+
+
