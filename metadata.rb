@@ -1,9 +1,9 @@
 name 'hello-world'
-maintainer 'The Authors'
-maintainer_email 'you@example.com'
+maintainer 'Ariel Simhon'
+maintainer_email 'arielsimhon@gmail.com'
 license 'All Rights Reserved'
 description 'Installs/Configures hello-world'
-long_description 'Installs/Configures hello-world'
+long_description 'Installs/Configures hello-world with Tomact + nginx as reverse proxy'
 version '0.1.0'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
