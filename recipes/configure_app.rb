@@ -6,6 +6,7 @@
 
 # Install prerequisites
 include_recipe 'hello-world::jdk-7'
+include_recipe 'hello-world::awscli'
 include_recipe 'hello-world::tomcat-7'
 include_recipe 'hello-world::nginx'
 
@@ -17,12 +18,9 @@ remote_file '/opt/tomcat/webapps/ROOT.war' do
 end
 
 # Add SSL
-%w[ web.key web.crt ].each do |myFile|
-  cookbook_file "/etc/ssl/private/#{myFile}" do
-    source "#{myFile}"
-    owner 'root'
-    group 'root'
-    mode '0600'
+%w[ key crt ].each do |myFile|
+  bash 'get-ssl' do
+    code "/usr/local/bin/aws s3 cp s3://mylab-certs/www.koral-graphic.com.#{myFile} /etc/ssl/private/web.#{myFile} && chmod 600 /etc/ssl/private/*"
   end
 end
 

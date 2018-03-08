@@ -4,7 +4,8 @@ maintainer_email 'arielsimhon@gmail.com'
 license 'All Rights Reserved'
 description 'Installs/Configures hello-world'
 long_description 'Installs/Configures hello-world with Tomact + nginx as reverse proxy'
-version '0.1.0'
+version '0.1.1'
+depends 's3_file'
 chef_version '>= 12.1' if respond_to?(:chef_version)
 
 # The `issues_url` points to the location where issues for this cookbook are
