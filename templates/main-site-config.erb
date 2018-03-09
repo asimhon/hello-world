@@ -20,6 +20,11 @@ server {
 
     }
 
+    # Health check
+    location = /ping {
+        return 200 "pong";
+    }
+
     location / {
         proxy_pass http://backend;
         proxy_redirect off;
