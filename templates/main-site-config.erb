@@ -15,7 +15,7 @@ server {
     ssl_prefer_server_ciphers on;
 
     # Redirect to HTTPS
-    if ($scheme = http) {
+    if ($http_x_forwarded_proto = http) {
         return 301 https://$server_name$request_uri;
 
     }
